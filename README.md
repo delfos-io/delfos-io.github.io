@@ -164,7 +164,7 @@ A Delfos atua principalmente com:
 
 **Pedro Figueira** — Co-fundador
 📧 pedro@delfos.dev
-📱 [(21) 99367-7337](https://w.app/delfos)
+📱 [(21) 99367-7337](https://api.whatsapp.com/send?phone=5521993677337&text=Eu+gostaria+de+saber+mais+informa%C3%A7%C3%B5es+sobre+os+seus+servi%C3%A7os.)
 🌐 [delfos.dev](https://delfos.dev)
 💼 [linkedin.com/company/delfos-dev](https://www.linkedin.com/company/delfos-dev/)
 
