@@ -74,6 +74,9 @@ Aplicações multiplataforma com foco em usabilidade e velocidade de desenvolvim
 ### 🤖 Automação e Inteligência Artificial
 Integração de IA generativa (Gemini, OpenAI, Claude) em fluxos de negócio reais — prospecção, atendimento, geração de conteúdo, análise de dados. Automação de processos com N8N, Make e integrações via API.
 
+### 💬 Chatbots de Atendimento via WhatsApp
+Criação de bots inteligentes para WhatsApp, treinados nos detalhes do seu negócio — serviços, preços, horários, perguntas frequentes. O bot faz a triagem dos clientes, responde dúvidas comuns e ainda pode realizar agendamentos de forma automática, 24 horas por dia, sem precisar de uma pessoa disponível a todo momento.
+
 ### 🎨 Branding Digital e Presença Online
 Criação de identidade visual, estratégia de presença no Google (SEO e Google Meu Negócio), gestão de redes sociais e criação de conteúdo para marcas que querem ser encontradas e lembradas.
 
