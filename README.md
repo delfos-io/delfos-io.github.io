@@ -1,5 +1,23 @@
 # Delfos — Documento Institucional
-**delfos.dev** · pedro@delfos.dev · +55 (21) 99367-7337
+
+<table>
+    <tr>
+        <td>
+            <img src="https://raw.githubusercontent.com/delfos-io/delfos-io.github.io/refs/heads/main/src/images/logo.png" width="280" height="280" />
+        </td>
+        <td>
+            <h2>
+                <a href="https://delfos.dev">Delfos.dev</a>
+            </h2>
+            <p>
+                <a href="mailto:pedro@delfos.dev">pedro@delfos.dev</a>
+            </p>
+            <p>
+                <a href="https://api.whatsapp.com/send?phone=5521993677337&text=Eu+gostaria+de+saber+mais+informa%C3%A7%C3%B5es+sobre+os+seus+servi%C3%A7os.">+55 (21) 99367-7337</a>
+            </p>
+        </td>
+    </tr>
+</table>
 
 ---
 
@@ -36,7 +54,7 @@ Com mais de **13 anos de experiência**, Pedro já atuou em projetos que vão de
 
 Já prestou consultoria para empresas em Portugal, no setor de games e em algumas das maiores plataformas de crowdfunding do Brasil.
 
-### Lucas Marinho — Co-fundador & Especialista em UI/UX e Animações 3D
+### Lucas — Co-fundador & Especialista em UI/UX e Animações 3D
 
 Lucas é o elo entre tecnologia e percepção — responsável por transformar sistemas complexos em interfaces intuitivas e visualmente marcantes. Especialista em UI/UX e animações 3D, cria experiências digitais que engajam, convertem e diferenciam a marca do cliente em um mercado saturado de produtos genéricos.
 
@@ -162,11 +180,31 @@ A Delfos atua principalmente com:
 
 ## Contato
 
-**Pedro Figueira** — Co-fundador
-📧 pedro@delfos.dev
-📱 [(21) 99367-7337](https://api.whatsapp.com/send?phone=5521993677337&text=Eu+gostaria+de+saber+mais+informa%C3%A7%C3%B5es+sobre+os+seus+servi%C3%A7os.)
-🌐 [delfos.dev](https://delfos.dev)
-💼 [linkedin.com/company/delfos-dev](https://www.linkedin.com/company/delfos-dev/)
+
+<table>
+    <tr>
+        <td>
+            <img src="https://raw.githubusercontent.com/delfos-io/delfos-io.github.io/refs/heads/main/src/images/qr-code-whatsapp.png" width="280" height="280" />
+        </td>
+        <td>
+            <h3>
+                <strong>Pedro Figueira</strong> — Co-fundador
+            </h3>
+            <p>
+                📧 <a href="mailto:pedro@delfos.dev">pedro@delfos.dev</a>
+            </p>
+            <p>
+                📱 <a href="https://api.whatsapp.com/send?phone=5521993677337&text=Eu+gostaria+de+saber+mais+informa%C3%A7%C3%B5es+sobre+os+seus+servi%C3%A7os.">(21) 99367-7337</a>
+            </p>
+            <p>
+                🌐 <a href="https://delfos.dev">delfos.dev</a>
+            </p>
+            <p>
+            💼 <a href="https://www.linkedin.com/company/delfos-dev/">linkedin.com/company/delfos-dev</a>
+            </p>
+        </td>
+    </tr>
+</table>
 
 ---
 
