@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Delfos — Agência digital especializada em desenvolvimento de sistemas, sites e aplicativos. Conheça nossa história, missão e equipe." />
+  <title>Delfos — Quem Somos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+  <style>
+    /* ─── DESIGN TOKENS ─── */
+    :root {
+      --gradient: linear-gradient(135deg, #6C63FF 0%, #EC4899 100%);
+      --gradient-soft: linear-gradient(135deg, rgba(108,99,255,.12) 0%, rgba(236,72,153,.12) 100%);
+      --accent: #6C63FF;
+      --accent2: #EC4899;
+      --radius: 16px;
+      --radius-sm: 8px;
+      --transition: .3s cubic-bezier(.4,0,.2,1);
+      --shadow: 0 4px 24px rgba(0,0,0,.08);
+      --shadow-lg: 0 16px 48px rgba(0,0,0,.12);
+    }
+
+    /* ─── LIGHT THEME ─── */
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #F8F9FC;
+        --bg-alt: #FFFFFF;
+        --surface: #FFFFFF;
+        --surface2: #F1F4FB;
+        --border: rgba(0,0,0,.08);
+        --text: #0D0F1A;
+        --text-muted: #64748B;
+        --text-soft: #94A3B8;
+        --nav-bg: rgba(248,249,252,.85);
+      }
+    }
+
+    /* ─── DARK THEME ─── */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #080B14;
+        --bg-alt: #0D1120;
+        --surface: #111827;
+        --surface2: #1A2133;
+        --border: rgba(255,255,255,.07);
+        --text: #F0F4FF;
+        --text-muted: #8B9CC8;
+        --text-soft: #4A5880;
+        --nav-bg: rgba(8,11,20,.85);
+      }
+    }
+
+    /* ─── RESET & BASE ─── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    ul { list-style: none; }
+
+    /* ─── UTILITY ─── */
+    .container { width: min(1160px, 100% - 3rem); margin-inline: auto; }
+    .badge {
+      display: inline-flex; align-items: center; gap: .4rem;
+      background: var(--gradient-soft); border: 1px solid rgba(108,99,255,.2);
+      color: var(--accent); border-radius: 999px;
+      font-size: .75rem; font-weight: 600; letter-spacing: .05em;
+      padding: .3rem .9rem; text-transform: uppercase;
+    }
+    .section-header { text-align: center; margin-bottom: 4rem; }
+    .section-header h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800; line-height: 1.15;
+      margin: .75rem 0 1rem;
+    }
+    .section-header p {
+      font-size: 1.05rem; color: var(--text-muted);
+      max-width: 600px; margin-inline: auto;
+    }
+    .gradient-text {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    section { padding: 6rem 0; }
+    section:nth-child(odd) { background: var(--bg); }
+    section:nth-child(even) { background: var(--bg-alt); }
+
+    /* ─── REVEAL ANIMATION ─── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity .7s var(--transition), transform .7s var(--transition);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ─── NAVBAR ─── */
+    nav {
+      position: fixed; inset: 0 0 auto;
+      z-index: 1000;
+      background: var(--nav-bg);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border-bottom: 1px solid var(--border);
+      padding: .9rem 0;
+    }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: .6rem;
+    }
+    .nav-logo img { width: 36px; height: 36px; border-radius: 8px; }
+    .nav-logo span { font-family: 'Syne', sans-serif; font-size: 1.15rem; font-weight: 800; }
+    .nav-links {
+      display: flex; gap: 2rem;
+    }
+    .nav-links a {
+      font-size: .875rem; font-weight: 500; color: var(--text-muted);
+      transition: color var(--transition);
+    }
+    .nav-links a:hover { color: var(--text); }
+    .nav-cta {
+      background: var(--gradient);
+      color: #fff !important;
+      padding: .5rem 1.25rem;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: .875rem;
+      transition: opacity var(--transition), transform var(--transition);
+    }
+    .nav-cta:hover { opacity: .9; transform: translateY(-1px); }
+    .nav-menu-btn { display: none; background: none; border: none; cursor: pointer; color: var(--text); padding: .25rem; }
+
+    /* ─── HERO ─── */
+    #hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column; justify-content: center;
+      position: relative; overflow: hidden;
+      padding: 8rem 0 6rem;
+    }
+    .hero-bg-glow {
+      position: absolute; inset: 0; pointer-events: none;
+    }
+    .hero-bg-glow::before,
+    .hero-bg-glow::after {
+      content: ''; position: absolute; border-radius: 50%;
+      filter: blur(100px); opacity: .35;
+    }
+    .hero-bg-glow::before {
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, #6C63FF, transparent);
+      top: -100px; left: -100px;
+    }
+    .hero-bg-glow::after {
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, #EC4899, transparent);
+      bottom: -50px; right: -50px;
+    }
+    .hero-inner {
+      position: relative; z-index: 1;
+      display: grid; grid-template-columns: 1fr 1fr;
+      align-items: center; gap: 4rem;
+    }
+    .hero-content .badge { margin-bottom: 1.5rem; }
+    .hero-content h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2.5rem, 5.5vw, 4.25rem);
+      font-weight: 800; line-height: 1.1;
+      margin-bottom: 1.5rem;
+    }
+    .hero-content p {
+      font-size: 1.125rem; color: var(--text-muted);
+      max-width: 500px; margin-bottom: 2.5rem; line-height: 1.7;
+    }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: var(--gradient); color: #fff;
+      padding: .85rem 2rem; border-radius: 999px;
+      font-weight: 600; font-size: 1rem;
+      transition: transform var(--transition), box-shadow var(--transition);
+      box-shadow: 0 4px 20px rgba(108,99,255,.4);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(108,99,255,.5); }
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: transparent; color: var(--text);
+      border: 1.5px solid var(--border);
+      padding: .85rem 2rem; border-radius: 999px;
+      font-weight: 600; font-size: 1rem;
+      transition: border-color var(--transition), background var(--transition);
+    }
+    .btn-outline:hover { border-color: var(--accent); background: var(--gradient-soft); }
+    .hero-visual {
+      display: flex; justify-content: center; align-items: center;
+    }
+    .hero-logo-wrap {
+      position: relative; display: inline-flex;
+    }
+    .hero-logo-wrap::before {
+      content: ''; position: absolute; inset: -24px;
+      background: var(--gradient); border-radius: 50%; opacity: .15;
+      animation: pulse 3s ease-in-out infinite;
+    }
+    .hero-logo-wrap::after {
+      content: ''; position: absolute; inset: -48px;
+      background: var(--gradient); border-radius: 50%; opacity: .07;
+      animation: pulse 3s ease-in-out infinite .5s;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.06); }
+    }
+    .hero-logo-wrap img {
+      width: 280px; height: 280px;
+      border-radius: 50%; position: relative; z-index: 1;
+      box-shadow: 0 24px 64px rgba(108,99,255,.3);
+    }
+    .hero-stats {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem; margin-top: 3rem;
+    }
+    .hero-stat {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.25rem;
+      text-align: center;
+      transition: transform var(--transition);
+    }
+    .hero-stat:hover { transform: translateY(-4px); }
+    .hero-stat .num {
+      font-family: 'Syne', sans-serif; font-size: 1.75rem;
+      font-weight: 800; background: var(--gradient);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-stat .lbl { font-size: .8rem; color: var(--text-muted); margin-top: .15rem; }
+
+    /* ─── ABOUT ─── */
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+    .about-text h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.75rem, 3vw, 2.5rem); font-weight: 800;
+      line-height: 1.2; margin: .75rem 0 1.25rem;
+    }
+    .about-text p { color: var(--text-muted); line-height: 1.8; margin-bottom: 1rem; font-size: 1.05rem; }
+    .about-callout {
+      background: var(--gradient-soft); border: 1px solid rgba(108,99,255,.2);
+      border-left: 4px solid var(--accent);
+      border-radius: var(--radius-sm); padding: 1.25rem 1.5rem;
+      margin-top: 1.5rem;
+      font-weight: 500; font-size: 1.05rem; line-height: 1.7;
+    }
+    .mvv-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .mvv-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 2rem;
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+    .mvv-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+    .mvv-icon {
+      width: 48px; height: 48px; border-radius: 12px;
+      background: var(--gradient); display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem; margin-bottom: 1.25rem;
+    }
+    .mvv-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: .6rem; }
+    .mvv-card p { color: var(--text-muted); font-size: .95rem; line-height: 1.7; }
+
+    /* ─── VALUES ─── */
+    .values-list {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.25rem; margin-top: 2rem;
+    }
+    .value-item {
+      display: flex; gap: 1rem; align-items: flex-start;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.5rem;
+      transition: transform var(--transition), border-color var(--transition);
+    }
+    .value-item:hover { transform: translateY(-4px); border-color: rgba(108,99,255,.3); }
+    .value-dot {
+      flex-shrink: 0; width: 10px; height: 10px;
+      border-radius: 50%; background: var(--gradient); margin-top: .4rem;
+    }
+    .value-item strong { font-weight: 700; display: block; margin-bottom: .35rem; }
+    .value-item span { color: var(--text-muted); font-size: .93rem; line-height: 1.6; }
+
+    /* ─── FOUNDERS ─── */
+    .founders-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .founder-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); overflow: hidden;
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+    .founder-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); }
+    .founder-header {
+      background: var(--gradient); padding: 2.5rem 2rem 1.5rem;
+      display: flex; align-items: flex-end; gap: 1.5rem;
+    }
+    .founder-avatar {
+      width: 72px; height: 72px; border-radius: 50%;
+      background: rgba(255,255,255,.25); border: 3px solid rgba(255,255,255,.5);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Syne', sans-serif; font-size: 1.75rem; font-weight: 800;
+      color: #fff; flex-shrink: 0;
+    }
+    .founder-title { color: #fff; }
+    .founder-title h3 { font-size: 1.2rem; font-weight: 700; line-height: 1.3; }
+    .founder-title span { font-size: .85rem; opacity: .85; }
+    .founder-body { padding: 1.75rem 2rem; }
+    .founder-body p { color: var(--text-muted); font-size: .96rem; line-height: 1.75; }
+    .founder-tags { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.25rem; }
+    .tag {
+      background: var(--surface2); color: var(--text-muted);
+      border: 1px solid var(--border);
+      border-radius: 999px; padding: .3rem .85rem;
+      font-size: .78rem; font-weight: 500;
+    }
+
+    /* ─── SERVICES ─── */
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .service-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 2rem;
+      transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+      cursor: default;
+    }
+    .service-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+      border-color: rgba(108,99,255,.3);
+    }
+    .service-emoji {
+      font-size: 2.25rem; display: block; margin-bottom: 1.25rem;
+    }
+    .service-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: .6rem; }
+    .service-card p { color: var(--text-muted); font-size: .92rem; line-height: 1.7; }
+
+    /* ─── SAAS ─── */
+    .saas-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .saas-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 2.25rem;
+      position: relative; overflow: hidden;
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+    .saas-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); }
+    .saas-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0;
+      height: 4px; background: var(--gradient);
+    }
+    .saas-card h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: .5rem; }
+    .saas-card .desc { color: var(--text-muted); font-size: .95rem; line-height: 1.7; margin-bottom: 1.5rem; }
+    .saas-metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 1.5rem; }
+    .saas-metric .val {
+      font-family: 'Syne', sans-serif; font-size: 1.35rem; font-weight: 800;
+      background: var(--gradient); -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .saas-metric .key { font-size: .78rem; color: var(--text-muted); margin-top: .1rem; }
+    .saas-stack { font-size: .82rem; color: var(--text-soft); }
+    .saas-link {
+      display: inline-flex; align-items: center; gap: .3rem;
+      color: var(--accent); font-weight: 600; font-size: .9rem; margin-top: .75rem;
+      transition: gap var(--transition);
+    }
+    .saas-link:hover { gap: .6rem; }
+
+    /* ─── CASES ─── */
+    .cases-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; }
+    .case-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 2rem;
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+    .case-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+    .case-card .sector {
+      font-size: .78rem; font-weight: 600; color: var(--accent);
+      text-transform: uppercase; letter-spacing: .06em; margin-bottom: .75rem;
+    }
+    .case-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: .5rem; }
+    .case-card .action { color: var(--text-muted); font-size: .92rem; line-height: 1.65; margin-bottom: 1rem; }
+    .case-result {
+      background: var(--gradient-soft); border: 1px solid rgba(108,99,255,.15);
+      border-radius: var(--radius-sm); padding: .85rem 1rem;
+      font-size: .9rem; line-height: 1.6;
+    }
+    .case-result strong { color: var(--accent); }
+
+    /* ─── COMPARISON ─── */
+    .compare-wrap { overflow-x: auto; }
+    .compare-table {
+      width: 100%; border-collapse: collapse; min-width: 640px;
+    }
+    .compare-table th, .compare-table td {
+      padding: 1rem 1.25rem;
+      border-bottom: 1px solid var(--border);
+      text-align: left; font-size: .93rem;
+    }
+    .compare-table thead th {
+      font-family: 'Syne', sans-serif; font-weight: 800;
+      font-size: .85rem; text-transform: uppercase; letter-spacing: .06em;
+      color: var(--text-muted); background: var(--surface2);
+    }
+    .compare-table thead th:last-child {
+      background: var(--gradient); color: #fff;
+      border-radius: 0 var(--radius-sm) 0 0;
+    }
+    .compare-table thead th:first-child { border-radius: var(--radius-sm) 0 0 0; }
+    .compare-table tbody tr:hover td { background: var(--surface2); }
+    .compare-table td:last-child { font-weight: 700; color: var(--accent); }
+    .compare-table td:first-child { font-weight: 600; }
+
+    /* ─── NUMBERS ─── */
+    .numbers-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .number-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 2rem; text-align: center;
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+    .number-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+    .number-card .num {
+      font-family: 'Syne', sans-serif; font-size: 2.5rem; font-weight: 800;
+      background: var(--gradient); -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent; background-clip: text;
+      display: block; line-height: 1.1; margin-bottom: .4rem;
+    }
+    .number-card .lbl { color: var(--text-muted); font-size: .9rem; }
+
+    /* ─── CONTACT ─── */
+    .contact-inner {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start;
+    }
+    .contact-info h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.75rem, 3vw, 2.5rem); font-weight: 800;
+      line-height: 1.2; margin: .75rem 0 1.25rem;
+    }
+    .contact-info p { color: var(--text-muted); font-size: 1.05rem; line-height: 1.75; margin-bottom: 2rem; }
+    .contact-links { display: flex; flex-direction: column; gap: .85rem; }
+    .contact-link {
+      display: flex; align-items: center; gap: 1rem;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1rem 1.25rem;
+      font-size: .95rem; font-weight: 500;
+      transition: border-color var(--transition), transform var(--transition), background var(--transition);
+    }
+    .contact-link:hover { border-color: var(--accent); transform: translateX(4px); background: var(--gradient-soft); }
+    .contact-icon {
+      width: 40px; height: 40px; border-radius: 10px;
+      background: var(--gradient); display: flex; align-items: center;
+      justify-content: center; font-size: 1.1rem; flex-shrink: 0;
+    }
+    .qr-wrap {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 2rem; text-align: center;
+    }
+    .qr-wrap img { width: 200px; height: 200px; border-radius: var(--radius-sm); margin-inline: auto; }
+    .qr-wrap p { color: var(--text-muted); font-size: .9rem; margin-top: 1rem; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--bg-alt); border-top: 1px solid var(--border);
+      padding: 3rem 0;
+    }
+    .footer-inner {
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 1.5rem;
+    }
+    .footer-brand { display: flex; align-items: center; gap: .6rem; }
+    .footer-brand img { width: 30px; height: 30px; border-radius: 6px; }
+    .footer-brand span { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1rem; }
+    .footer-copy { color: var(--text-muted); font-size: .875rem; }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a { color: var(--text-muted); font-size: .875rem; transition: color var(--transition); }
+    .footer-links a:hover { color: var(--accent); }
+
+    /* ─── UTILITY CLASSES ─── */
+    .mvv-card-wide { grid-column: span 2; }
+    .value-item-nested {
+      background: transparent !important;
+      border: none !important;
+      padding: .25rem 0 !important;
+    }
+    .value-item-nested-wide { grid-column: span 2; }
+    .founder-body p + p { margin-top: .75rem; }
+    .contact-label { font-size: .75rem; color: var(--text-muted); margin-bottom: .1rem; }
+
+    /* ─── MOBILE MENU ─── */
+    .mobile-nav {
+      display: none; position: fixed; inset: 0; z-index: 999;
+      background: var(--bg); padding: 5rem 1.5rem 2rem;
+      flex-direction: column; gap: 1.5rem;
+    }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav a { font-size: 1.25rem; font-weight: 600; color: var(--text); }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .nav-menu-btn { display: block; }
+      .hero-inner { grid-template-columns: 1fr; text-align: center; }
+      .hero-content p { margin-inline: auto; }
+      .hero-actions { justify-content: center; }
+      .hero-stats { grid-template-columns: repeat(3, 1fr); }
+      .hero-visual { order: -1; }
+      .hero-logo-wrap img { width: 200px; height: 200px; }
+      .about-grid { grid-template-columns: 1fr; }
+      .mvv-grid { grid-template-columns: 1fr 1fr; }
+      .founders-grid { grid-template-columns: 1fr; }
+      .services-grid { grid-template-columns: 1fr 1fr; }
+      .saas-grid { grid-template-columns: 1fr; }
+      .numbers-grid { grid-template-columns: repeat(2, 1fr); }
+      .contact-inner { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      section { padding: 4rem 0; }
+      .mvv-grid { grid-template-columns: 1fr; }
+      .services-grid { grid-template-columns: 1fr; }
+      .numbers-grid { grid-template-columns: 1fr 1fr; }
+      .hero-stats { grid-template-columns: 1fr; }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── NAVBAR ─── -->
+  <nav>
+    <div class="container nav-inner">
+      <a class="nav-logo" href="#hero">
+        <img src="src/images/logo.png" alt="Delfos logo" />
+        <span>Delfos</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#sobre">Quem Somos</a></li>
+        <li><a href="#fundadores">Fundadores</a></li>
+        <li><a href="#servicos">Serviços</a></li>
+        <li><a href="#cases">Cases</a></li>
+        <li><a href="#contato" class="nav-cta">Falar com a Delfos</a></li>
+      </ul>
+      <button class="nav-menu-btn" id="menuBtn" aria-label="Abrir menu">
+        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile nav -->
+  <div class="mobile-nav" id="mobileNav">
+    <a href="#sobre" class="mobile-link">Quem Somos</a>
+    <a href="#fundadores" class="mobile-link">Fundadores</a>
+    <a href="#servicos" class="mobile-link">Serviços</a>
+    <a href="#saas" class="mobile-link">Produtos</a>
+    <a href="#cases" class="mobile-link">Cases</a>
+    <a href="#numeros" class="mobile-link">Números</a>
+    <a href="#contato" class="mobile-link">Contato</a>
+  </div>
+
+  <!-- ─── HERO ─── -->
+  <section id="hero">
+    <div class="hero-bg-glow"></div>
+    <div class="container">
+      <div class="hero-inner">
+        <div class="hero-content">
+          <span class="badge">🇧🇷 Brasil &nbsp;·&nbsp; 🇵🇹 Portugal</span>
+          <h1>
+            Tecnologia de ponta.<br />
+            <span class="gradient-text">Design que converte.</span>
+          </h1>
+          <p>A Delfos é uma agência digital que transforma ideias ambiciosas em produtos digitais de alto impacto — com engenharia sólida e design sofisticado.</p>
+          <div class="hero-actions">
+            <a href="#contato" class="btn-primary">
+              Falar com a Delfos
+              <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a href="#sobre" class="btn-outline">Conhecer mais</a>
+          </div>
+          <div class="hero-stats">
+            <div class="hero-stat reveal">
+              <div class="num">13+</div>
+              <div class="lbl">Anos de experiência</div>
+            </div>
+            <div class="hero-stat reveal">
+              <div class="num">100+</div>
+              <div class="lbl">Projetos entregues</div>
+            </div>
+            <div class="hero-stat reveal">
+              <div class="num">50+</div>
+              <div class="lbl">Clientes satisfeitos</div>
+            </div>
+          </div>
+        </div>
+        <div class="hero-visual reveal">
+          <div class="hero-logo-wrap">
+            <img src="src/images/logo.png" alt="Delfos" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── ABOUT ─── -->
+  <section id="sobre">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-text reveal">
+          <span class="badge">Quem Somos</span>
+          <h2>Parceiros de <span class="gradient-text">crescimento digital</span></h2>
+          <p>A <strong>Delfos</strong> é uma agência digital especializada em desenvolvimento de sistemas, sites e aplicativos — criada por dois profissionais que, juntos, cobrem os dois lados que mais importam em um produto digital.</p>
+          <p>A solidez da engenharia e a beleza da experiência.</p>
+          <div class="about-callout">
+            Não somos uma fábrica de código. Somos parceiros de crescimento — aqueles que entendem o seu negócio antes de escrever a primeira linha, e que entregam soluções que os usuários amam e as empresas dependem.
+          </div>
+        </div>
+        <div class="mvv-grid">
+          <div class="mvv-card reveal">
+            <div class="mvv-icon">🎯</div>
+            <h3>Missão</h3>
+            <p>Transformar ideias ambiciosas em produtos digitais que geram resultado real — com velocidade, inteligência e design que se destaca.</p>
+          </div>
+          <div class="mvv-card reveal">
+            <div class="mvv-icon">🔭</div>
+            <h3>Visão</h3>
+            <p>Ser referência no Brasil e em Portugal como a agência que une a melhor engenharia de software com o design mais sofisticado.</p>
+          </div>
+          <div class="mvv-card mvv-card-wide reveal">
+            <div class="mvv-icon">💎</div>
+            <h3>Valores</h3>
+            <div class="values-list" style="margin-top:1rem; grid-template-columns: 1fr 1fr;">
+              <div class="value-item value-item-nested">
+                <div class="value-dot"></div>
+                <div><strong>Clareza antes do código</strong><span>Entendemos o problema antes de propor a solução.</span></div>
+              </div>
+              <div class="value-item value-item-nested">
+                <div class="value-dot"></div>
+                <div><strong>Velocidade com responsabilidade</strong><span>Entregamos rápido sem cortar atalhos na qualidade.</span></div>
+              </div>
+              <div class="value-item value-item-nested">
+                <div class="value-dot"></div>
+                <div><strong>Parceria genuína</strong><span>O sucesso do cliente é o nosso sucesso.</span></div>
+              </div>
+              <div class="value-item value-item-nested">
+                <div class="value-dot"></div>
+                <div><strong>Inovação aplicada</strong><span>IA e automação como vantagem competitiva real.</span></div>
+              </div>
+              <div class="value-item value-item-nested value-item-nested-wide">
+                <div class="value-dot"></div>
+                <div><strong>Design como estratégia</strong><span>A experiência do usuário é parte da proposta de valor, não um detalhe final.</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FOUNDERS ─── -->
+  <section id="fundadores">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="badge">Time Fundador</span>
+        <h2>Os rostos por trás da <span class="gradient-text">Delfos</span></h2>
+        <p>Dois especialistas, dois mundos — engenharia de alto nível e design de impacto — unidos para entregar o melhor dos dois.</p>
+      </div>
+      <div class="founders-grid">
+        <div class="founder-card reveal">
+          <div class="founder-header">
+            <div class="founder-avatar">P</div>
+            <div class="founder-title">
+              <h3>Pedro Figueira</h3>
+              <span>Co-fundador &amp; Arquiteto de Software Sênior</span>
+            </div>
+          </div>
+          <div class="founder-body">
+            <p>Com mais de <strong>13 anos de experiência</strong>, Pedro já atuou em projetos que vão de sistemas financeiros críticos a plataformas com dezenas de milhares de usuários simultâneos. Especialista em arquitetura de sistemas escaláveis, segurança e automação com IA.</p>
+            <p>Já prestou consultoria para empresas em Portugal, no setor de games e em algumas das maiores plataformas de crowdfunding do Brasil.</p>
+            <div class="founder-tags">
+              <span class="tag">Arquitetura de Sistemas</span>
+              <span class="tag">Segurança</span>
+              <span class="tag">IA &amp; Automação</span>
+              <span class="tag">13+ anos</span>
+            </div>
+          </div>
+        </div>
+        <div class="founder-card reveal">
+          <div class="founder-header">
+            <div class="founder-avatar">L</div>
+            <div class="founder-title">
+              <h3>Lucas</h3>
+              <span>Co-fundador &amp; Especialista em UI/UX e Animações 3D</span>
+            </div>
+          </div>
+          <div class="founder-body">
+            <p>Lucas é o elo entre tecnologia e percepção — responsável por transformar sistemas complexos em interfaces intuitivas e visualmente marcantes. Especialista em UI/UX e animações 3D.</p>
+            <p>Cria experiências digitais que engajam, convertem e diferenciam a marca do cliente em um mercado saturado de produtos genéricos.</p>
+            <div class="founder-tags">
+              <span class="tag">UI/UX Design</span>
+              <span class="tag">Animações 3D</span>
+              <span class="tag">Branding Digital</span>
+              <span class="tag">Conversão</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── SERVICES ─── -->
+  <section id="servicos">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="badge">O que entregamos</span>
+        <h2>Soluções digitais <span class="gradient-text">end-to-end</span></h2>
+        <p>Do levantamento de requisitos ao go-live em produção — cobrimos todo o ciclo de vida do produto digital.</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card reveal">
+          <span class="service-emoji">🛠️</span>
+          <h3>Desenvolvimento de Sistemas</h3>
+          <p>Sistemas web sob medida, de MVPs a plataformas complexas com alta demanda. Stack moderna, arquitetura escalável e segurança de nível empresarial.</p>
+        </div>
+        <div class="service-card reveal">
+          <span class="service-emoji">🌐</span>
+          <h3>Sites e Landing Pages</h3>
+          <p>Sites institucionais, portais e landing pages de alta conversão — com performance, SEO técnico e design que transforma visitante em cliente.</p>
+        </div>
+        <div class="service-card reveal">
+          <span class="service-emoji">📱</span>
+          <h3>Aplicativos Mobile e Web</h3>
+          <p>Aplicações multiplataforma com foco em usabilidade e velocidade de desenvolvimento. Do protótipo ao deploy em produção.</p>
+        </div>
+        <div class="service-card reveal">
+          <span class="service-emoji">🤖</span>
+          <h3>Automação e Inteligência Artificial</h3>
+          <p>Integração de IA generativa (Gemini, OpenAI, Claude) em fluxos de negócio reais. Automação de processos com N8N, Make e APIs.</p>
+        </div>
+        <div class="service-card reveal">
+          <span class="service-emoji">🎨</span>
+          <h3>Branding Digital e Presença Online</h3>
+          <p>Identidade visual, SEO, Google Meu Negócio e gestão de redes sociais para marcas que querem ser encontradas e lembradas.</p>
+        </div>
+        <div class="service-card reveal">
+          <span class="service-emoji">🔍</span>
+          <h3>Consultoria em Arquitetura e Segurança</h3>
+          <p>Diagnóstico técnico, revisão de arquitetura, roadmap de evolução e hardening de segurança para empresas que precisam escalar.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── SAAS ─── -->
+  <section id="saas">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="badge">Produtos Próprios</span>
+        <h2>SaaS que <span class="gradient-text">provam a capacidade</span></h2>
+        <p>Além do desenvolvimento sob demanda, a Delfos constrói e mantém produtos próprios — do zero ao produto.</p>
+      </div>
+      <div class="saas-grid">
+        <div class="saas-card reveal">
+          <h3>Delfos API</h3>
+          <p class="desc">Documentação Automática de APIs — resolve um dos maiores gargalos de times de desenvolvimento. Documentação gerada e atualizada automaticamente em poucos cliques.</p>
+          <div class="saas-metrics">
+            <div class="saas-metric"><div class="val">100+</div><div class="key">APIs documentadas</div></div>
+            <div class="saas-metric"><div class="val">10K+</div><div class="key">Endpoints cobertos</div></div>
+            <div class="saas-metric"><div class="val">95%</div><div class="key">Satisfação devs</div></div>
+          </div>
+          <div class="saas-stack">Stack: Next.js · TypeScript · OpenAPI · Swagger</div>
+          <a href="https://api.delfos.dev" target="_blank" rel="noopener noreferrer" class="saas-link">
+            Acessar api.delfos.dev
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+        <div class="saas-card reveal">
+          <h3>Delfos Plataforma Multimídia</h3>
+          <p class="desc">Conteúdo Automático para Redes Sociais — geração automática de conteúdo integrando IA generativa com a identidade visual da marca do cliente.</p>
+          <div class="saas-metrics">
+            <div class="saas-metric"><div class="val">5K+</div><div class="key">Usuários ativos</div></div>
+            <div class="saas-metric"><div class="val">1M+</div><div class="key">Publicações/dia</div></div>
+            <div class="saas-metric"><div class="val">80%</div><div class="key">Redução no tempo</div></div>
+          </div>
+          <div class="saas-stack">Stack: React · OpenAI · Claude · Gemini</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CASES ─── -->
+  <section id="cases">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="badge">Cases de Sucesso</span>
+        <h2>Resultados reais, <span class="gradient-text">impacto mensurável</span></h2>
+        <p>Parceiros que confiaram na Delfos e saíram com produtos e métricas que comprovam o investimento.</p>
+      </div>
+      <div class="cases-grid">
+        <div class="case-card reveal">
+          <div class="sector">Fitness · Gestão Empresarial 🇵🇹</div>
+          <h3>Iron Fit — Portugal</h3>
+          <p class="action">Mais de um ano de parceria, com entrega do novo sistema financeiro interno da empresa — do levantamento de requisitos ao go-live em produção.</p>
+          <div class="case-result"><strong>Sistema financeiro robusto e integrado</strong>, substituindo processos manuais e reduzindo erros operacionais.</div>
+        </div>
+        <div class="case-card reveal">
+          <div class="sector">Games · Entretenimento Digital</div>
+          <h3>Suprema Gaming</h3>
+          <p class="action">Consultoria estratégica que resultou na nova arquitetura do principal jogo da Suprema, com roadmap completo de desenvolvimento.</p>
+          <div class="case-result"><strong>Base técnica sólida e escalável</strong> para suportar o crescimento da plataforma, com visibilidade clara de cronograma e custos.</div>
+        </div>
+        <div class="case-card reveal">
+          <div class="sector">Fintech · Crowdfunding 🇧🇷</div>
+          <h3>Apoia-se</h3>
+          <p class="action">Consultoria especializada em segurança e arquitetura para uma das maiores plataformas de financiamento coletivo do Brasil.</p>
+          <div class="case-result"><strong>Vulnerabilidades críticas identificadas e corrigidas</strong>, com recomendações de arquitetura para escalar com segurança.</div>
+        </div>
+        <div class="case-card reveal">
+          <div class="sector">Esportes · Mídia Digital</div>
+          <h3>Super Placar</h3>
+          <p class="action">Reestruturação da infraestrutura do sistema de resultados esportivos em tempo real.</p>
+          <div class="case-result"><strong>5.000 → 30.000 usuários simultâneos</strong> sem aumento nos custos de servidores — redução de custo por usuário em <strong>6x</strong>.</div>
+        </div>
+        <div class="case-card reveal">
+          <div class="sector">Mídia · Tecnologia</div>
+          <h3>TechAtlas</h3>
+          <p class="action">Desenvolvimento completo da plataforma de notícias com foco em performance e SEO técnico.</p>
+          <div class="case-result">Google Lighthouse: <strong>95 Performance · 100 Acessibilidade · 100 SEO</strong>. Carregamento inferior a 1 segundo.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── COMPARISON ─── -->
+  <section id="por-que">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="badge">Por que a Delfos?</span>
+        <h2>A diferença que você <span class="gradient-text">sente no produto</span></h2>
+        <p>Compare e veja por que cada vez mais empresas escolhem a Delfos como parceira de crescimento.</p>
+      </div>
+      <div class="compare-wrap reveal">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>Critério</th>
+              <th>Agências tradicionais</th>
+              <th>Freelancers</th>
+              <th>✦ Delfos</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Velocidade de entrega</td><td>Meses</td><td>Variável</td><td>Semanas</td></tr>
+            <tr><td>Qualidade de design</td><td>Boa</td><td>Variável</td><td>Senior UI/UX + 3D</td></tr>
+            <tr><td>Solidez técnica</td><td>Boa</td><td>Variável</td><td>13+ anos de arquitetura</td></tr>
+            <tr><td>Foco em ROI</td><td>Médio</td><td>Baixo</td><td>Alta prioridade</td></tr>
+            <tr><td>Produtos SaaS próprios</td><td>Raro</td><td>Não</td><td>Sim — provam a capacidade</td></tr>
+            <tr><td>IA e automação integradas</td><td>Emergindo</td><td>Raro</td><td>Core da operação</td></tr>
+            <tr><td>Atendimento personalizado</td><td>Baixo</td><td>Alto</td><td>Alto — você fala com o fundador</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── NUMBERS ─── -->
+  <section id="numeros">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="badge">Números</span>
+        <h2>Resultados que <span class="gradient-text">falam por si</span></h2>
+      </div>
+      <div class="numbers-grid">
+        <div class="number-card reveal"><span class="num">13+</span><span class="lbl">Anos de experiência do time fundador</span></div>
+        <div class="number-card reveal"><span class="num">100+</span><span class="lbl">Projetos entregues com sucesso</span></div>
+        <div class="number-card reveal"><span class="num">50+</span><span class="lbl">Clientes satisfeitos</span></div>
+        <div class="number-card reveal"><span class="num">2</span><span class="lbl">Países atendidos (Brasil 🇧🇷 e Portugal 🇵🇹)</span></div>
+        <div class="number-card reveal"><span class="num">30K+</span><span class="lbl">Usuários simultâneos suportados (Super Placar)</span></div>
+        <div class="number-card reveal"><span class="num">97/100</span><span class="lbl">Lighthouse Score médio (TechAtlas)</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CONTACT ─── -->
+  <section id="contato">
+    <div class="container">
+      <div class="contact-inner">
+        <div class="reveal">
+          <span class="badge">Contato</span>
+          <div class="contact-info">
+            <h2>Vamos construir algo <span class="gradient-text">incrível juntos?</span></h2>
+            <p>Entre em contato com o Pedro, co-fundador da Delfos. Você fala diretamente com quem toma as decisões e faz acontecer.</p>
+          </div>
+          <div class="contact-links">
+            <a href="mailto:pedro@delfos.dev" class="contact-link">
+              <div class="contact-icon">📧</div>
+              <div>
+                <div class="contact-label">E-mail</div>
+                pedro@delfos.dev
+              </div>
+            </a>
+            <a href="https://api.whatsapp.com/send?phone=5521993677337&text=Eu+gostaria+de+saber+mais+informa%C3%A7%C3%B5es+sobre+os+seus+servi%C3%A7os." target="_blank" rel="noopener noreferrer" class="contact-link">
+              <div class="contact-icon">📱</div>
+              <div>
+                <div class="contact-label">WhatsApp</div>
+                +55 (21) 99367-7337
+              </div>
+            </a>
+            <a href="https://delfos.dev" target="_blank" rel="noopener noreferrer" class="contact-link">
+              <div class="contact-icon">🌐</div>
+              <div>
+                <div class="contact-label">Site</div>
+                delfos.dev
+              </div>
+            </a>
+            <a href="https://www.linkedin.com/company/delfos-dev/" target="_blank" rel="noopener noreferrer" class="contact-link">
+              <div class="contact-icon">💼</div>
+              <div>
+                <div class="contact-label">LinkedIn</div>
+                linkedin.com/company/delfos-dev
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="reveal">
+          <div class="qr-wrap">
+            <img src="src/images/qr-code-whatsapp.png" alt="QR Code WhatsApp Pedro Figueira" />
+            <p>Escaneie para falar diretamente no WhatsApp com o Pedro Figueira, co-fundador da Delfos.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ─── -->
+  <footer>
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <img src="src/images/logo.png" alt="Delfos logo" />
+        <span>Delfos</span>
+      </div>
+      <span class="footer-copy">© 2025 Delfos Software House · Construindo o futuro, uma linha de código por vez.</span>
+      <div class="footer-links">
+        <a href="mailto:pedro@delfos.dev">Contato</a>
+        <a href="https://delfos.dev" target="_blank" rel="noopener noreferrer">Site</a>
+        <a href="https://www.linkedin.com/company/delfos-dev/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ─── Mobile menu ───
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileNav = document.getElementById('mobileNav');
+    menuBtn.addEventListener('click', () => mobileNav.classList.toggle('open'));
+    document.querySelectorAll('.mobile-link').forEach(link => {
+      link.addEventListener('click', () => mobileNav.classList.remove('open'));
+    });
+
+    // ─── Scroll reveal ───
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
